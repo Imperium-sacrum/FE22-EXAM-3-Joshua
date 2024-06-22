@@ -1,0 +1,51 @@
+<div class="text-center">
+  <h2>WELCOME HERE YOU CAN FIND ALL OUR PRODUCTS</h2>
+  <h6>Enjoy</h6>
+</div>
+<div class="row row-cols-3">
+  <div class="container" *ngFor="let val of products; index as productId">
+    <section class="mx-auto my-5" style="max-width: 27rem">
+      <div class="card">
+        <div
+          class="bg-image hover-overlay ripple"
+          data-mdb-ripple-color="light"
+        >
+          <img src="images/{{ val.image }}" class="img-fluid card-img-top" />
+          <a href="#!">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">
+            <a>Product Name: {{ val.name }}</a>
+          </h5>
+          <p class="mb-2">Price: {{ val.price | currency : "EUR" }}</p>
+          <p class="card-text">
+            {{ val.descriptionCard }}
+          </p>
+          <hr class="my-4" />
+          <h6 class="lead"></h6>
+
+          <ng-template [ngIf]="val.availability == true" [ngIfElse]="none">
+            <a class="btn btn-dark w-50" routerLink="/details/{{ productId }}"
+              >Details</a
+            >
+            <button
+              type="button"
+              class="btn btn-dark w-50"
+              (click)="addToCard2(products[productId])"
+            >
+              Add to Cart
+            </button>
+          </ng-template>
+          <ng-template #none>
+            <h3 class="text-danger text-center">SOLD OUT</h3>
+          </ng-template>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

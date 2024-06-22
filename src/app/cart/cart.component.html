@@ -1,0 +1,42 @@
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Marke</th>
+        <th scope="col">Image</th>
+        <th scope="col">qtty</th>
+        <th scope="col">price</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      @for (val of pro ; track $index; let i = $index) {
+      <tr>
+        <td>{{ val.name }}</td>
+        <td>{{ val.marke }}</td>
+        <td><img src="./images/{{ val.image }}" class="img1" alt="" /></td>
+        <td>{{ val.qtty }}</td>
+        <td>{{ val.price | currency : "EUR" }}</td>
+        <td>
+          <button (click)="onDecreaseQtty(val)" class="btn btn-warning">
+            -
+          </button>
+          <button (click)="onDelete(i)" class="btn btn-danger">Det</button>
+          <button (click)="onIncreaseQtty(val)" class="btn btn-success">
+            +
+          </button>
+        </td>
+        <td>{{ val.qtty * val.price | currency : "EUR" }}</td>
+      </tr>
+      }
+    </tbody>
+    <tfoot>
+      <th>SERVICE ARE INCLUDED 10%</th>
+      <th colspan="7">DISCONT: €{{ totalDiscont }}</th>
+      <th colspan="7">TOTAL WITH SERVICE: €{{ total }}</th>
+      <th colspan="7">TOTAL WITH DISCONT: €{{ newTotal }}</th>
+    </tfoot>
+  </table>
+</div>

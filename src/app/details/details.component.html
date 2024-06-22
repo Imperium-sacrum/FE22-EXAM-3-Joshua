@@ -1,0 +1,52 @@
+<div class="d-flex my-1">
+  <div>
+    <img
+      class="img-fluid border border-2 border-success"
+      src="./images/{{ product.image }}"
+      alt=""
+    />
+  </div>
+  <div class="container">
+    <h4>{{ product.name }}</h4>
+    <h6>{{ product.price | currency : "EUR" }}</h6>
+    <p>{{ product.longDescription }}</p>
+    <hr />
+    <p><span class="h6">Marke:</span> {{ product.marke }}.</p>
+    <br />
+    <p>
+      <span class="h6">ShippingTime:</span>
+      {{ product.shippingTime }} days.
+    </p>
+    <br />
+    <p>
+      <span class="h6">Availability:</span>
+      {{ product.availability }}
+    </p>
+    <hr />
+    <div class="d-flex container justify-content-around">
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Quantity:{{ product.qtty }}
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item">2</a></li>
+          <li><a class="dropdown-item">3</a></li>
+          <li><a class="dropdown-item">4</a></li>
+        </ul>
+      </div>
+      <ng-template [ngIf]="product.availability == true" [ngIfElse]="none">
+        <button type="button" class="btn btn-dark" (click)="addToCart()">
+          Add to Cart
+        </button>
+      </ng-template>
+      <ng-template #none>
+        <h3 class="text-danger">SOLD OUT</h3>
+      </ng-template>
+    </div>
+  </div>
+</div>
