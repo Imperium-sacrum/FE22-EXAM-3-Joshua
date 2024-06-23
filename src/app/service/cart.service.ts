@@ -34,9 +34,12 @@ export class CartService {
     let total =0;
     let total2 =0;
     let total3 =0;
-    this.cart.forEach(products=> total += products.price*products.qtty)
+    if (this.getTotal() >= 40) {
+          this.cart.forEach(products=> total += products.price*products.qtty)
         total2= total + total/10,
         total3= total2 - total2/15
+    }
+
 
     return total3
   }
@@ -45,9 +48,12 @@ export class CartService {
     let total =0;
     let total2 =0;
     let total3 =0;
+    if (this.getTotal() >=40) {
     this.cart.forEach(products=> total += products.price*products.qtty)
     total2= total + total/10
     total3= total2/15
+    }
+
     return total3
   }
   increaseQtty(products:productModel){
